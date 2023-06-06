@@ -1,0 +1,45 @@
+@csrf_exempt
+def logout_user(request):
+    logout(request)
+    return HttpResponse("Logout successful!")
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User Registration</title>
+    </head>
+    <body>
+        <h1>User Registration</h1>
+        <form action="{% url 'register_user' %}" method="post">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" />
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" />
+            <input type="submit" value="Register" />
+        </form>
+        <h1>Change Password</h1>
+        <form action="{% url 'change_password' %}" method="post">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" />
+            <label for="password">New Password:</label>
+            <input type="password" name="password" id="password" />
+            <input type="submit" value="Change Password" />
+        </form>
+        <h1>Login</h1>
+        <form action="{% url 'login_user' %}" method="post">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" />
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" />
+            <input type="submit" value="Login" />
+        </form>
+        <h1>Logout</h1>
+        <form action="{% url 'logout_user' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Logout" />
+        </form>
+    </body>
+</html>
